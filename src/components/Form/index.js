@@ -6,16 +6,6 @@ import { useState } from 'react';
 
 const Form = (props) => {
 
-  const teams = [
-    'Programação',
-    'Front-end',
-    'Data Science',
-    'Devops',
-    'UX e Design',
-    'Mobile',
-    'Inovação e Gestão',
-  ]
-
   const [name, setName] = useState('')
   const [position, setPosition] = useState('')
   const [image, setImage] = useState('')
@@ -23,12 +13,16 @@ const Form = (props) => {
 
   const onSave = (event) => {
     event.preventDefault()
-    props.whenAddingEmployee({
+    props.whenEmployeeAdded({
       name,
       position,
       image,
       team
     })
+    setName('')
+    setPosition('')
+    setImage('')
+    setTeam('')
   }
 
   return (
@@ -58,7 +52,7 @@ const Form = (props) => {
         <DropdownList
           required={true}
           label="Time"
-          items={teams}
+          items={props.teams}
           value={team}
           whenChanged={value => setTeam(value)}
         />
